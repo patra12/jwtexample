@@ -9,4 +9,4 @@ module.exports = (sequelize, DataTypes) => {
   };
   return User;
 };
-Model.findAll({ limit: 10 })
+//Model.findAll({ limit: 10 })
