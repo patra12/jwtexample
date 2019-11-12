@@ -4,28 +4,28 @@ const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 const app = express()
 
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+
+
+
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
 config.dev = process.env.NODE_ENV !== 'production'
 
-const models = require('./models/index.js')
+//importing my own route which are actually link to the controller
+const rout = require('./router')
+app.use(rout);
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
-app.post('/api/users', (req, res) => {
-  //console.log(req.body)
-  //return req.body
-  models.User.create({ email: req.body.email, password: req.body.password })
-})
-
-app.get('/api/userlist', (req, res) => {
-  //  models.User.create({ email: req.body.email, password: req.body.password})
-})
+app.get('/te', (req, res) => {
+  res.send('hello from rout');
+});
 
 async function start() {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
+
   const { host, port } = nuxt.options.server
 
   // Build only in dev mode
@@ -42,7 +42,7 @@ async function start() {
   // Listen the server
   app.listen(port, host)
   consola.ready({
-    message: `Server listening on https://${host}:${port}`,
+    message: `Server listening on http://${host}:${port}`,
     badge: true
   })
 }

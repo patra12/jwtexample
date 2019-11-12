@@ -1,3 +1,4 @@
+const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
   mode: 'universal',
@@ -5,6 +6,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
+    titleTemplate: '%s - ' + process.env.npm_package_name,
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -33,22 +35,54 @@ module.exports = {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-    '@nuxtjs/tailwindcss',
+    '@nuxtjs/vuetify',
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
+    ['nuxt-fontawesome', {
+      component: 'fa',
+      imports: [{
+        set: "@fortawesome/free-solid-svg-icons",
+        icons: ['fas']
+      }]
+    }
+    ]
   ],
   /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
+  ** vuetify module configuration
+  ** https://github.com/nuxt-community/vuetify-module
   */
-  axios: {
+  vuetify: {
+    customVariables: ['~/assets/variables.scss'],
+    theme: {
+      // dark: true,
+      // themes: {
+      //   dark: {
+      //     primary: colors.blue.darken2,
+      //     accent: colors.grey.darken3,
+      //     secondary: colors.amber.darken3,
+      //     info: colors.teal.lighten1,
+      //     warning: colors.amber.base,
+      //     error: colors.deepOrange.accent4,
+      //     success: colors.green.accent3
+      //   }
+      // }
+
+      light: true,
+      themes: {
+        light: {
+          primary: colors.blue.darken2,
+          // accent: colors.grey.darken3,
+          // secondary: colors.amber.darken3,
+          // info: colors.teal.lighten1,
+          // warning: colors.amber.base,
+          // error: colors.deepOrange.accent4,
+          // success: colors.green.accent3
+        }
+      }
+    }
   },
   /*
   ** Build configuration
@@ -57,7 +91,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }

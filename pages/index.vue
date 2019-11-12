@@ -1,77 +1,91 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        node-auth
-      </h1>
-      <h2 class="subtitle">
-        My terrific Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+  <div>
+    <Body />
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Vue from "vue";
+import BootstrapVue from "bootstrap-vue";
+Vue.use(BootstrapVue);
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+// import Logo from "~/components/Logo.vue";
+// import VuetifyLogo from "~/components/VuetifyLogo.vue";
+import Body from "./front/index";
 
 export default {
   components: {
-    Logo
+    // Logo,
+    // VuetifyLogo
+    Body
   }
-}
+};
 </script>
-
-<style>
-/* Sample `apply` at-rules with Tailwind CSS
-.container {
-  @apply min-h-screen flex justify-center items-center text-center mx-auto;
-}
-*/
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style scoped>
+.card-body {
+  position: relative;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.card {
+  -webkit-box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
+  position: relative;
+  overflow: hidden;
+}
+.btn {
+  background-color: coral;
+  border: none;
+}
+.card:hover .card-img-top {
+  size: 50%;
+}
+.avona-btn {
+  background: #f05a25;
+  color: #fff;
+  padding: 7px;
+  font-size: 17px;
+  font-weight: 500;
+}
+.card-body img {
+  transition: transform 0.5s ease;
+}
+.card-body:hover img {
+  transform: scale(1.1) rotate(50deg);
+}
+.card-body h3 {
+  text-transform: uppercase;
+  color: #000;
+}
+.card-body p {
+  color: rgb(131, 122, 122);
+}
+.v-content {
+  background-color: #fff !important;
+}
+.theme--dark.v-application {
+  background: #e60000;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+fw h3,
+h4 {
+  font-weight: bold;
 }
-
-.links {
-  padding-top: 15px;
+.btnx {
+  background-color: coral;
+}
+.banner-sec {
+  background: url(../assets/images/top-banner.jpg);
+  background-size: 100%;
+  padding: 50px 0;
+}
+.banner-sec h2 {
+  color: #fff;
+}
+.banner-sec p {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
 }
 </style>

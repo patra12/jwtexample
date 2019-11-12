@@ -1,33 +1,32 @@
 {
-  "name": "node-auth",
+  "name": "avona",
   "version": "1.0.0",
-  "description": "My terrific Nuxt.js project",
+  "description": "My transcendent Nuxt.js project",
   "author": "birja",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-  "build": "nuxt build",
-  "start": "nuxt start",
-  "heroku-postbuild": "npm run build"
-  },
+   "dev": "nuxt",
+   "build": "nuxt build",
+   "start": "nuxt start",
+   "heroku-postbuild": "npm run build"
+   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^3.0.0-0",
-    "body-parser": "1.19.0",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.4",
     "cross-env": "^5.2.0",
-    "dotenv": "8.1.0",
+    "db-migrate-mysql": "^1.1.10",
     "express": "^4.16.4",
-    "mysql2": "1.7.0",
+    "mysql": "^2.17.1",
     "nuxt": "^2.0.0",
-    "sequelize": "5.18.1"
+    "nuxt-fontawesome": "^0.4.0",
+    "vue": "^2.6.10",
+    "vue-pdf": "^4.0.7",
+    "vue2-editor": "^2.10.2"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^1.0.0",
-    "@vue/test-utils": "^1.0.0-beta.27",
-    "babel-jest": "^24.1.0",
-    "jest": "^24.1.0",
     "nodemon": "^1.18.9",
-    "sequelize-cli": "^5.5.1",
-    "vue-jest": "^4.0.0-0"
+    "@nuxtjs/vuetify": "^1.0.0"
   }
 }
