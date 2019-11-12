@@ -29,8 +29,21 @@ export default {
       subTitle:
         "Our Store Present Some New Technological And Powerful Blades Which Will Gives You Long Last And Durability.",
       description:
-        "Check Our Newest and Amazing Blades Which Are Newly Comes In Our Store .................."
+        "Check Our Newest and Amazing Blades Which Are Newly Comes In Our Store ..................",
+      test: ""
     };
+  },
+  created() {
+    axios({
+      method: "get",
+      url: ""
+    })
+      .then(res => {
+        this.test = res.data;
+      })
+      .catch(error => {
+        console.log(this.test);
+      });
   }
 };
 </script>
