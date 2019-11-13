@@ -19,6 +19,7 @@
 
 <script>
 import Card from "./card";
+import axios from "axios";
 export default {
   components: {
     Card
