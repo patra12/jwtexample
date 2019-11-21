@@ -4,6 +4,9 @@
   "description": "My transcendent Nuxt.js project",
   "author": "Kus software",
   "private": true,
+  "engines": {
+    "node": "12.13.0"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
