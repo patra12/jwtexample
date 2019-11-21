@@ -91,7 +91,7 @@ export default {
   created() {
     axios({
       method: "get",
-      url: "http://localhost:3000/settingsData",
+      url: "http://172.17.37.102:18263/settingsData",
     }).then(res => {
       this._data.email = res.data[0].email;
       this._data.phone = res.data[0].phone;
@@ -120,7 +120,7 @@ export default {
           }
       }
       axios({
-        url: "http://localhost:3000/settingsPostData",
+        url: "http://172.17.37.102:18263/settingsPostData",
         method: "POST",
         headers: {
           'Content-Type': 'application/json;charset=UTF-8',

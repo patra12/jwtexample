@@ -96,7 +96,7 @@ export default {
   created() {
     axios({
       method: "get",
-      url: "http://localhost:3000/settingsData"
+      url: "http://172.17.37.102:18263/settingsData"
     }).then(res => {
       console.log(res.data);
       this.static_contact_data = res.data;

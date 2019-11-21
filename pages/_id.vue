@@ -72,7 +72,7 @@ export default {
   },
   created() {
     axios({
-      url: "http://localhost:3000/editproduct/" + this.$route.params.id,
+      url: "http://172.17.37.102:18263/editproduct/" + this.$route.params.id,
       method: "get"
     }).then(res => {
       this.pid = res.data[0].id;

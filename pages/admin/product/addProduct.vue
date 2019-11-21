@@ -95,7 +95,7 @@ export default {
       form.append('pdf_name',this.pdf_name);
       //console.log("kus",form);
       axios({
-        url: "http://localhost:3000/addproduct",
+        url: "http://172.17.37.102:18263/addproduct",
         method: "POST",
         headers: {
          header: { "Content-Type": "multipart/form-data" }

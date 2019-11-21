@@ -37,6 +37,9 @@ module.exports = {
   buildModules: [
     '@nuxtjs/vuetify',
   ],
+  server: [
+    port: process.env.port || 3000
+  ]
   /*
   ** Nuxt.js modules
   */

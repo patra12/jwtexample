@@ -37,7 +37,7 @@ export default {
   },
   mounted() {
     axios({
-      url: "http://localhost:3000/productlist",
+      url: "http://172.17.37.102:18263/productlist",
       methods: "get"
     }).then(res => {
       this.products = res.data;

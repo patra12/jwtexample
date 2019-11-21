@@ -98,7 +98,7 @@ export default {
   created() {
     axios({
       method: "get",
-      url: "http://localhost:3000/settingsData"
+      url: "http://172.17.37.102:18263/settingsData"
     }).then(res => {
       console.log(res.data);
       this.static_contact_data = res.data;
@@ -115,7 +115,7 @@ export default {
       console.log(mailData);
       axios({
         method: "post",
-        url: "http://localhost:3000/sendMail",
+        url: "http://172.17.37.102:18263/sendMail",
         data: mailData
       }).then(res => {
         (this.name = ""),
