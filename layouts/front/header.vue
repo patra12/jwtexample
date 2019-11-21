@@ -19,22 +19,22 @@
             <!--Logo end -->
           </div>
           <div class="col-md-6 p-0">
-            <div class="row top-block">
+            <div class="row top-block" v-for="(item,index) in static_contact_data" :key="index">
               <p class="ico-text">
                 &nbsp;
                 <v-icon class="text-light">mdi-phone</v-icon>
 
-                <a href="tel:3177594940">&nbsp;{{ph1}}</a>
+                <a href="tel:3177594940">&nbsp;{{item.phone}}</a>
               </p>
               <p class="ico-text">
                 &nbsp;
                 <v-icon class="text-light">mdi-phone</v-icon>&nbsp; Tel:
-                <a href="#">&nbsp;{{ph2}}</a>
+                <a href="#">&nbsp;{{item.contact_telephone}}</a>
               </p>
               <p class="ico-text">
                 &nbsp;
                 <v-icon class="text-light">mdi-email</v-icon>&nbsp;
-                <a href="mailto:info@mail.com">&nbsp;{{email}}</a>
+                <a href="mailto:info@mail.com">&nbsp;{{item.contact_email}}</a>
               </p>
             </div>
           </div>
@@ -50,6 +50,7 @@
           type="button"
           data-toggle="collapse"
           data-target="#collapsibleNavbar"
+          @click="showMenu()"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -59,12 +60,10 @@
               <nuxt-link class="nav-link mr-3" to="/">HOME</nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link mr-3" to="/front/product">PRODUCTS</nuxt-link>
+              <nuxt-link class="nav-link mr-3" to="/product">PRODUCTS</nuxt-link>
             </li>
             <li class="nav-item">
-              <nuxt-link class="nav-link mr-3" to="/front/contact">
-                <font-awesome-icon icon="coffee" />CONTACT US
-              </nuxt-link>
+              <nuxt-link class="nav-link mr-3" to="/contact">CONTACT US</nuxt-link>
             </li>
           </ul>
         </div>
@@ -73,18 +72,35 @@
   </header>
 </template>
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      ph1: "(877) 77-AVONA",
-      ph2: "(877) 772-8662",
-      email: "sales@avonasupply.com"
+      static_contact_data: [],
+      display:0
     };
-    methods: {
-      showManu: {
-        document.getElementById("collapsibleNavbar").diaplay = "block";
+  },
+  methods: {
+    showMenu() {
+      if(this.display == 0)
+      {
+        document.getElementById("collapsibleNavbar").style.display ="block";
+        this.display = 1;
+      }
+      else{
+         document.getElementById("collapsibleNavbar").style.display ="none";
+         this.display = 0
       }
     }
+  },
+  created() {
+    axios({
+      method: "get",
+      url: "http://localhost:3000/settingsData"
+    }).then(res => {
+      console.log(res.data);
+      this.static_contact_data = res.data;
+    });
   }
 };
 </script>

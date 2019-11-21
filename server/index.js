@@ -2,12 +2,14 @@ const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
+
 const app = express()
 
 
-app.use(bodyParser.urlencoded({ extended: false }))
 
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(express.json());
 
 
 // Import and Set Nuxt.js options
@@ -20,6 +22,11 @@ app.use(rout);
 
 app.get('/te', (req, res) => {
   res.send('hello from rout');
+  console.log(req);
+});
+app.post('/xo', (req, res) => {
+  console.log(req.body);
+  res.send(req.body);
 });
 
 async function start() {

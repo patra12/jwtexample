@@ -1,11 +1,10 @@
 <template>
+   
   <v-container class="bv-example-row">
     <v-row class="border bg">
       <h4 class="font-weight-light">Product List</h4>
       <nuxt-link to="./addProduct">
-        <v-icon class="right" color="white darken-1" title="Add page"
-          >mdi-plus-box</v-icon
-        >
+        <v-icon class="right" color="white darken-1" title="Add page">mdi-plus-box</v-icon>
       </nuxt-link>
     </v-row>
     <v-row class="bg-content text-center">
@@ -14,7 +13,7 @@
           <b>#</b>
         </v-col>
         <v-col class="border">
-          <b>Name</b>
+          <b>Product Name</b>
         </v-col>
         <v-col class="border">
           <b>Alias</b>
@@ -26,68 +25,30 @@
           <b>Action</b>
         </v-col>
       </div>
-      /*<div class="row w-100" v-for="(product, index) in products" :key="index">
-        <v-col class="border font-weight-light">{{ index + 1 }}</v-col>
-        <v-col class="border font-weight-light">{{ product.name }}</v-col>
-        <v-col class="border font-weight-light">{{ product.alias }}</v-col>
-        <v-col class="border font-weight-light">{{ product.status }}</v-col>
+      <div class="row w-100" v-for="(product, index) in products" :key="index">
+        <v-col class="border font-weight-light">{{index+1}}</v-col>
+        <v-col class="border font-weight-light">{{product.product_name}}</v-col>
+        <v-col class="border font-weight-light">{{product.product_alias}}</v-col>
+        <v-col class="border font-weight-light">{{product.status}}</v-col>
         <v-col class="border">
-          <nuxt-link to="./editProduct">
+          <!-- <nuxt-link to="./editProduct"> -->
+          <nuxt-link :to="'./editProduct/' + product.id">
             <v-icon title="Edit" color="purple darken-1">mdi-pencil</v-icon>
           </nuxt-link>
           <nuxt-link to="#">
-            <v-icon color="red darken-2" title="Delete">mdi-close</v-icon>
-          </nuxt-link>
-        </v-col>
-      </div>*/
-	      <div class="row w-100">
-        <v-col class="border font-weight-light">1.</v-col>
-        <v-col class="border font-weight-light">Alexa</v-col>
-        <v-col class="border font-weight-light">alexa</v-col>
-        <v-col class="border font-weight-light">active</v-col>
-        <v-col class="border">
-          <nuxt-link to="./editProduct">
-            <v-icon title="Edit" color="purple darken-1">mdi-pencil</v-icon>
-          </nuxt-link>
-          <nuxt-link to="#">
-            <v-icon color="red darken-2" title="Delete">mdi-close</v-icon>
+            <v-icon @click="delete_data(product.id)" color="red darken-2" title="Delete">mdi-close</v-icon>
           </nuxt-link>
         </v-col>
       </div>
 
-      <div class="row w-100">
-        <v-col class="border font-weight-light">2.</v-col>
-        <v-col class="border font-weight-light">Ibrahim</v-col>
-        <v-col class="border font-weight-light">ibrahim</v-col>
-        <v-col class="border font-weight-light">active</v-col>
-        <v-col class="border">
-          <nuxt-link to="./editProduct">
-            <v-icon title="Edit" color="purple darken-1">mdi-pencil</v-icon>
-          </nuxt-link>
-          <nuxt-link to="#">
-            <v-icon color="red darken-2" title="Delete">mdi-close</v-icon>
-          </nuxt-link>
-        </v-col>
-      </div>
 
-      <div class="row w-100">
-        <v-col class="border font-weight-light">3.</v-col>
-        <v-col class="border font-weight-light">Maksud</v-col>
-        <v-col class="border font-weight-light">maksud</v-col>
-        <v-col class="border font-weight-light">active</v-col>
-        <v-col class="border">
-          <nuxt-link to="./editProduct">
-            <v-icon title="Edit" color="purple darken-1">mdi-pencil</v-icon>
-          </nuxt-link>
-          <nuxt-link to="#">
-            <v-icon color="red darken-2" title="Delete">mdi-close</v-icon>
-          </nuxt-link>
-        </v-col>
-      </div>
     </v-row>
   </v-container>
+  <!-- <div>
+    <v-table striped hover :items="items"></v-table>
+  </div>-->
+      
 </template>
-
 <script>
 import axios from "axios";
 export default {
@@ -99,21 +60,33 @@ export default {
     };
   },
   created() {
-    /*axios({
+    axios({
       method: "get",
-      url: "http://localhost:3000/pages"
+      url: "http://localhost:3000/productlist"
     })
       .then(res => {
         this.products = res.data;
       })
       .catch(function(error) {
         console.log(error);
-      });*/
+      });
     axios;
+  },
+   methods:{
+	delete_data(id){
+	  axios({
+	  url:"http://localhost:3000/deleteproduct/"+id,
+	  method:"get",
+	  })	
+	  .then(res=>{
+		  this.$router.go('/admin/product/productlist')
+	  	console.log(res.data);
+	  	
+	  });
+	}
   }
 };
 </script>
-
 <style scoped>
 /* repeat */
 h4 {
@@ -143,3 +116,4 @@ h4 {
   font-weight: bold;
 }
 </style>
+

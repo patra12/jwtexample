@@ -9,21 +9,12 @@
       app
     >
       <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
+        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router exact>
           <v-list-item-action>
             <v-icon color="white darken-2">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title
-              class="white--text text--lighten-1"
-              v-text="item.title"
-            />
+            <v-list-item-title class="white--text text--lighten-1" v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -31,7 +22,7 @@
     <v-app-bar class="whiteC" :clipped-left="clipped" fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
+        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
       <v-btn icon @click.stop="clipped = !clipped">
         <v-icon>mdi-application</v-icon>
@@ -41,9 +32,6 @@
       </v-btn>
 
       <v-spacer />
-      <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>-->
     </v-app-bar>
     <v-content class="bg">
       <v-container>
@@ -79,7 +67,7 @@ export default {
           icon: "mdi-wrench",
           title: "Settings",
           to: "/admin/settings"
-        }
+         },
         // {
         //   icon: "mdi-file-pdf-box",
         //   title: "pdf",
