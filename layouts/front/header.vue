@@ -50,7 +50,6 @@
           type="button"
           data-toggle="collapse"
           data-target="#collapsibleNavbar"
-          @click="showMenu()"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -76,31 +75,28 @@ import axios from "axios";
 export default {
   data() {
     return {
-      static_contact_data: [],
-      display:0
+      static_contact_data: []
     };
   },
   methods: {
-    showMenu() {
-      if(this.display == 0)
-      {
-        document.getElementById("collapsibleNavbar").style.display ="block";
-        this.display = 1;
-      }
-      else{
-         document.getElementById("collapsibleNavbar").style.display ="none";
-         this.display = 0
-      }
+    showManu() {
+      document.getElementById("collapsibleNavbar").diaplay = "block";
     }
   },
   created() {
     axios({
       method: "get",
       url: "/settingsData"
-    }).then(res => {
+    })
+    .then(res => {
       console.log(res.data);
       this.static_contact_data = res.data;
-    });
+    })
+    .catch(error => {
+        if (error.response) {
+          console.log(error.response);
+        }
+      });
   }
 };
 </script>

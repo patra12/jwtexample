@@ -32,6 +32,9 @@
       </v-btn>
 
       <v-spacer />
+      <!-- <v-btn icon @click.stop="rightDrawer = !rightDrawer">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>-->
     </v-app-bar>
     <v-content class="bg">
       <v-container>

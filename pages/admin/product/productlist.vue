@@ -62,7 +62,7 @@ export default {
   created() {
     axios({
       method: "get",
-      url: "http://172.17.37.102:18263/productlist"
+      url: "http://localhost:3000/productlist"
     })
       .then(res => {
         this.products = res.data;
@@ -75,7 +75,7 @@ export default {
    methods:{
 	delete_data(id){
 	  axios({
-	  url:"http://172.17.37.102:18263/deleteproduct/"+id,
+	  url:"http://localhost:3000/deleteproduct/"+id,
 	  method:"get",
 	  })	
 	  .then(res=>{

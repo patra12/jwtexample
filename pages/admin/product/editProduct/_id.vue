@@ -78,7 +78,7 @@ export default {
   }),
   created(){
   	axios({
-  		url:"http://172.17.37.102:18263/editproduct/"+this.$route.params.id,
+  		url:"http://localhost:3000/editproduct/"+this.$route.params.id,
   		method:"get",
   	     })
   	     .then(res => {
@@ -124,7 +124,7 @@ export default {
             pdf_name: this.pdf_name
     	}
     	axios({
-    	   url:"http://172.17.37.102:18263/editpostproduct/"+this.$route.params.id,
+    	   url:"http://localhost:3000/editpostproduct/"+this.$route.params.id,
     	   method:"put",
     	   headers: {
           'Content-Type': 'application/json;charset=UTF-8',

@@ -32,14 +32,16 @@
         </div>
         <!-- row.// -->
       </div>
+      
+      
       <div class="d-flex w-25 mx-auto"></div>
     </div>
 
     <div class="footer-pdf">
-      <nuxt-link :to="'/pdf/'+pid" target="_blank">
+      <a href="https://bit.ly/2CyO5mz" target="_blank">
         Click
         <u>Here</u> to download flyer
-      </nuxt-link>
+      </a>
     </div>
   </section>
 </template>
@@ -48,7 +50,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      pid:"",
       product_name: "",
       product_alias: "",
       product_description: "",
@@ -63,16 +64,17 @@ export default {
     };
   },
   methods: {
+    readFile() {
+      window.open("../assets/test.pdf", "_blank"); //to open in new tab
+    },
     makeimg(img){
-      console.log();
-        return "/_nuxt/uploads/product/"+img;
-        // return require("../uploads/product/" + img);
+        return "/_nuxt/assets/images/"+img;
         
     }
   },
   created() {
     axios({
-      url: "http://172.17.37.102:18263/editproduct/" + this.$route.params.id,
+      url: "/editproduct/" + this.$route.params.id,
       method: "get"
     }).then(res => {
       this.pid = res.data[0].id;
@@ -88,7 +90,11 @@ export default {
       this.meta_description = res.data[0].meta_description;
       this.pdf_name = res.data[0].pdf_name;
       console.log(res.data);
-    });
+    }).catch(error => {
+        if (error.response) {
+          console.log(error.response);
+        }
+      });
   }
 };
 </script>
@@ -106,6 +112,7 @@ export default {
   box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
 }
 .product-more-desc {
+  background: url(../assets/images/bottom-banner.jpg) no-repeat;
   background-color: #d9d9d9;
   background-size: 100%;
   padding: 50px 0;
