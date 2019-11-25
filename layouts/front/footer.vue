@@ -10,7 +10,7 @@
                 <nuxt-link to="/">
                   <img
                     class="img-fluid"
-                    src="../../assets/images/avona-footer-logo.png"
+                    src="@/assets/images/avona-footer-logo.png"
                     alt=" Image of site logo "
                     width="100"
                   />

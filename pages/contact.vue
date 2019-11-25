@@ -98,15 +98,11 @@ export default {
   created() {
     axios({
       method: "get",
-      url: "/settingsData"
+      url: " /settingsData"
     }).then(res => {
       console.log(res.data);
       this.static_contact_data = res.data;
-    }).catch(error => {
-        if (error.response) {
-          console.log(error.response);
-        }
-      });
+    });
   },
   methods: {  
     sendmail() {
@@ -119,7 +115,7 @@ export default {
       console.log(mailData);
       axios({
         method: "post",
-        url: "/sendMail",
+        url: " /sendMail",
         data: mailData
       }).then(res => {
         (this.name = ""),
@@ -128,11 +124,6 @@ export default {
           (this.message = ""),
           (this.mail_delevery = res.data),
           console.log(res.data);
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(error.response);
-        }
       });
     }
   }

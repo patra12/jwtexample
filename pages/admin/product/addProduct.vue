@@ -19,15 +19,19 @@
                <v-text-field v-model="product_alias" label="Product alias" required></v-text-field>
               <p class="grey--text text--darken-1 pt-3 mb-0">Product Description</p>
               <v-textarea type="text" v-model="product_description" ></v-textarea>
+              <!-- <vue-editor v-model="product_description" class="py-5"></vue-editor> -->
              
              <v-text-field v-model="feature_benefitas" label="Feature benefitas" required></v-text-field>
             <p class="grey--text text--darken-1 pt-3 mb-0">Feature Description</p>
+
+             <!-- <vue-editor v-model="feature_description" class="py-5"></vue-editor> -->
 
              <v-textarea type="text" v-model="feature_description" ></v-textarea>
 
              <v-text-field v-model="price" label="Price" required></v-text-field>
 
-             <input type="file" name="image" ref="image" @change="onFileChange">
+
+             <input type="file" name="filename" ref="image" @change="onFileChange">
 
              <v-text-field v-model="meta_title" label="Meta title" required></v-text-field>
 
@@ -35,7 +39,8 @@
 
              <v-text-field v-model="meta_keywords" label="Meta keywords" required></v-text-field>
 
-            <input type="file" name="pdf_name" ref="pdf_name" @change="onFileChange1">
+            <!-- <input type="file" name="pdf_name" ref="pdf_name" @change="onFileChange"> -->
+             <v-text-field v-model="pdf_name" label="PDF" required></v-text-field>
              
               <v-btn class="my-5 float-right" large color="primary" @click="addData()">Save</v-btn>
             </v-form>
@@ -72,10 +77,7 @@ export default {
     onFileChange() {
       var file = this.$refs.image.files[0];
       this.image = file;
-    },
-    onFileChange1() {
-      var file = this.$refs.pdf_name.files[0];
-      this.pdf_name = file;
+      //console.log("birja",this.image);
     },
     addData() {
       
@@ -93,7 +95,7 @@ export default {
       form.append('pdf_name',this.pdf_name);
       //console.log("kus",form);
       axios({
-        url: "http://localhost:3000/addproduct",
+        url: " /addproduct",
         method: "POST",
         headers: {
          header: { "Content-Type": "multipart/form-data" }

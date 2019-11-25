@@ -22,7 +22,7 @@ mailData += req.body.name + '</p></div>';
 // Step 2 (composing mail)
 let mailOptions = {
 from: 'test.blade@yandex.com', // TODO: email sender
-to: 'soumitra.kus@gmail.com,birja', // TODO: email receiver
+to: 'soumitra.kus@gmail.com,', // TODO: email receiver
 subject: req.body.name,
 html: mailData
 };

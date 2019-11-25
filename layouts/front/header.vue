@@ -10,7 +10,7 @@
                 <nuxt-link to="/">
                   <img
                     class="img-fluid main-logo"
-                    src="../../assets/images/avona-logo-tpo.png"
+                    src="@/assets/images/avona-logo-tpo.png"
                     alt=" Image of site logo "
                   />
                 </nuxt-link>
@@ -50,6 +50,7 @@
           type="button"
           data-toggle="collapse"
           data-target="#collapsibleNavbar"
+          @click="showMenu()"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -75,28 +76,31 @@ import axios from "axios";
 export default {
   data() {
     return {
-      static_contact_data: []
+      static_contact_data: [],
+      display:0
     };
   },
   methods: {
-    showManu() {
-      document.getElementById("collapsibleNavbar").diaplay = "block";
+    showMenu() {
+      if(this.display == 0)
+      {
+        document.getElementById("collapsibleNavbar").style.display ="block";
+        this.display = 1;
+      }
+      else{
+         document.getElementById("collapsibleNavbar").style.display ="none";
+         this.display = 0
+      }
     }
   },
   created() {
     axios({
       method: "get",
-      url: "/settingsData"
-    })
-    .then(res => {
+      url: " /settingsData"
+    }).then(res => {
       console.log(res.data);
       this.static_contact_data = res.data;
-    })
-    .catch(error => {
-        if (error.response) {
-          console.log(error.response);
-        }
-      });
+    });
   }
 };
 </script>

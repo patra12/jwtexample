@@ -1,5 +1,6 @@
 const colors = require('vuetify/es5/util/colors').default
 
+
 module.exports = {
   mode: 'universal',
   /*
@@ -37,55 +38,52 @@ module.exports = {
   buildModules: [
     '@nuxtjs/vuetify',
   ],
-  server: [{
-    port: process.env.PORT || 3000
-  }],
   /*
   ** Nuxt.js modules
   */
   modules: [
-    ['nuxt-fontawesome', {
-      component: 'fa',
-      imports: [{
-        set: "@fortawesome/free-solid-svg-icons",
-        icons: ['fas']
-      }]
-    }
-    ],
-    ['axios', {
-      baseURL: process.env.BASE_URL || 'http://localhost:3000'
-    }]
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
   ],
+  /*
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
+  axios: {
+    baseURL:process.env.BASE_URL || "http://localhost:3000"
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    // customVariables: ['~/assets/variables.scss'],
     theme: {
-      // dark: true,
-      // themes: {
-      //   dark: {
-      //     primary: colors.blue.darken2,
-      //     accent: colors.grey.darken3,
-      //     secondary: colors.amber.darken3,
-      //     info: colors.teal.lighten1,
-      //     warning: colors.amber.base,
-      //     error: colors.deepOrange.accent4,
-      //     success: colors.green.accent3
-      //   }
-      // }
-
-      light: true,
-      themes: {
-        light: {
-          primary: colors.blue.darken2,
-          // accent: colors.grey.darken3,
-          // secondary: colors.amber.darken3,
-          // info: colors.teal.lighten1,
-          // warning: colors.amber.base,
-          // error: colors.deepOrange.accent4,
-          // success: colors.green.accent3
+      theme: {
+        // dark: true,
+        // themes: {
+        //   dark: {
+        //     primary: colors.blue.darken2,
+        //     accent: colors.grey.darken3,
+        //     secondary: colors.amber.darken3,
+        //     info: colors.teal.lighten1,
+        //     warning: colors.amber.base,
+        //     error: colors.deepOrange.accent4,
+        //     success: colors.green.accent3
+        //   }
+        // }
+  
+        light: true,
+        themes: {
+          light: {
+            primary: colors.blue.darken2,
+            // accent: colors.grey.darken3,
+            // secondary: colors.amber.darken3,
+            // info: colors.teal.lighten1,
+            // warning: colors.amber.base,
+            // error: colors.deepOrange.accent4,
+            // success: colors.green.accent3
+          }
         }
       }
     }
@@ -97,7 +95,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend (config, ctx) {
     }
   }
 }

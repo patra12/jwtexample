@@ -44,7 +44,7 @@ h4 {
   background-color: coral;
 }
 .banner-sec {
-  background: url(../assets/images/top-banner.jpg);
+  background: url('~assets/images/top-banner.jpg');
   background-size: 100%;
   padding: 90px 0;
   background-size: cover;

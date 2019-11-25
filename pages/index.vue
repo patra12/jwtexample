@@ -6,13 +6,7 @@
 </template>
 
 <script>
-import Vue from "vue";
-import BootstrapVue from "bootstrap-vue";
-Vue.use(BootstrapVue);
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
-// import Logo from "~/components/Logo.vue";
-// import VuetifyLogo from "~/components/VuetifyLogo.vue";
 import Body from "./home";
 export default {
   components: {

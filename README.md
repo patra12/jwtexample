@@ -1,6 +1,6 @@
-# avona
+# rex
 
-> My transcendent Nuxt.js project
+> My magnificent Nuxt.js project
 
 ## Build Setup
 

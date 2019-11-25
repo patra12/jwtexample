@@ -28,7 +28,7 @@ export default {
   methods: {
     //use methods to show images dynamically
     getImg: function(pic) {
-      return require("../assets/images/" + pic);
+      return require("../uploads/product/" + pic);
     },
     smllstr(str) {
       var raw = str.substr(0, 100);
@@ -37,16 +37,12 @@ export default {
   },
   mounted() {
     axios({
-      url: '/productlist',
+      url: "/productlist",
       methods: "get"
     }).then(res => {
       this.products = res.data;
       console.log(res.data);
-    }).catch(error => {
-        if (error.response) {
-          console.log(error.response);
-        }
-      });
+    });
   }
 };
 </script>
