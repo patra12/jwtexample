@@ -5,7 +5,7 @@ var methods = {
     productlist: function productlist(req, res) {
         pool.getConnection(function (err, connection) {
             if (err) {
-                res.json({ "code": 100, "status": "Error in connection database" });
+                res.json({ "code": 100, "status": "Error in connection database","error":err });
                 return;
             }
             console.log('connected as id ' + connection.threadId);
