@@ -19,12 +19,7 @@
             </div>
             <div class="col side-nav p-0">
               <nav class="nav flex-row justify-content-end bottom-links">
-                <a class="nav-link" href="/front/ac-gc">AC / GC</a>
-                <a class="nav-link" href="/front/blue-shark">BLUE SHARK</a>
-                <a class="nav-link" href="/front/ductile-iron">DUCTILE IRON</a>
-                <a class="nav-link" href="/front/i-cut">I - CUT</a>
-                <a class="nav-link" href="/front/vane">VANE</a>
-                <a class="nav-link pr-0" href="/front/xlerator">XLERATOR</a>
+                <nuxt-link v-for="(item,index) in products" :key="index" :to="'/'+item.id" class="avona-btn nav-link">{{item.product_name}}</nuxt-link>
               </nav>
             </div>
           </div>
@@ -41,6 +36,25 @@
     </nav>
   </footer>
 </template>
+<script>
+import axios from "axios";
+export default {
+  data() {
+    return {
+      products: []
+    };
+  },
+  mounted() {
+    axios({
+      url: "/productlist",
+      methods: "get"
+    }).then(res => {
+      this.products = res.data;
+      console.log(res.data);
+    });
+  }
+}
+</script>
 <style scoped>
 .top-nav {
   background: #000;
