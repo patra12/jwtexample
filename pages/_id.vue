@@ -6,7 +6,7 @@
           <aside class="col-sm-6 border-right">
             <article class="gallery-wrap">
               <div class="img-big-wrap">
-                  <img :src = "makeimg(image)" alt />
+                  <img :src = "getImg(image)" alt />
               </div>
               <!-- slider-product.// -->
             </article>
@@ -61,10 +61,10 @@ export default {
     };
   },
   methods: {
-    makeimg(img){
-      console.log();
-        return "/_nuxt/uploads/product/"+img;
-    }
+   getImg: function(img) {
+      let img_path = require("../uploads/product/" + img);
+      return img_path;
+    },
   },
   created() {
     axios({
