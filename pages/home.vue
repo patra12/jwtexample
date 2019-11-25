@@ -5,7 +5,7 @@
         <h2 class="display-3 mb-4">{{title}}</h2>
         <p class="lead mb-2">{{subTitle}}</p>
         <p class="description mb-5">{{description}}</p>
-        <a class="btn btnx btn-lg text-dark" href="#" role="button">Know more</a>
+        <nuxt-link class="btn btnx btn-lg text-dark" to="/product" role="button">Know more</nuxt-link>
       </div>
 
       <!--blade section-->
