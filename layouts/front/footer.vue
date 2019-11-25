@@ -28,7 +28,7 @@
       <section class="copyrights">
         <div class="container">
           <div class="row py-2">
-            <p class="my-1 text-center mx-auto">copyrights &copy; 2019</p>
+            <p class="my-1 text-center mx-auto">{{settings}}</p>
           </div>
         </div>
       </section>
@@ -41,7 +41,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      products: []
+      products: [],
+      settings:'',
     };
   },
   mounted() {
@@ -50,6 +51,14 @@ export default {
       methods: "get"
     }).then(res => {
       this.products = res.data;
+      console.log(res.data);
+    });
+
+    axios({
+      url: "/settingsData",
+      methods: "get"
+    }).then(res => {
+      this.settings = res.data[0].copyrights;
       console.log(res.data);
     });
   }
