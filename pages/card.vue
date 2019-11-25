@@ -28,7 +28,8 @@ export default {
   methods: {
     //use methods to show images dynamically
     getImg: function(pic) {
-      return require("../uploads/product/" + pic);
+      let img_path = require("../uploads/product/" + pic);
+      return img_path;
     },
     smllstr(str) {
       var raw = str.substr(0, 100);
