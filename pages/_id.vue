@@ -6,9 +6,7 @@
           <aside class="col-sm-6 border-right">
             <article class="gallery-wrap">
               <div class="img-big-wrap">
-                <a href="#">
                   <img :src = "makeimg(image)" alt />
-                </a>
               </div>
               <!-- slider-product.// -->
             </article>

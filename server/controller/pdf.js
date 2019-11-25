@@ -11,6 +11,7 @@ var methods = {
             if(rows[0].pdf_name!='')
             {
                 var filePath = "./uploads/pdf/"+rows[0].pdf_name;
+                console.log(filePath);
                 fs.readFile(filePath , function (err,data){
                 res.contentType("application/pdf");
                 res.send(data);
