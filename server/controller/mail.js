@@ -31,7 +31,6 @@ var methods = {
         transporter.sendMail(mailOptions, (err, data) => {
             if (err) {
                 res.send("err " + err);
-                // Console.log('Error occurs', err);
             }
             else {
                 res.send("Mail sent successfully");

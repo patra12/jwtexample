@@ -1,13 +1,8 @@
-const express = require('express');
 const pool = require('../db');
-const bodyParser = require('body-parser');
-const app = express()
-app.use(bodyParser.urlencoded({ extended: false }));
 
 var methods = {
     settingsData: function settingsData(req, res) {
         pool.getConnection(function (err, connection) {
-
             connection.query("select * from settings", function (err, rows) {
                 connection.release();
                 if (!err) {
@@ -21,8 +16,6 @@ var methods = {
 
     settingsPostData: function settingsPostData(req, res) {
         pool.getConnection(function (err, connection) {
-            //console.log(req.body); 
-            ///console.log(req.body.data.email);
 
             var email = req.body.data.email;
             var phone = req.body.data.phone;
@@ -37,9 +30,9 @@ var methods = {
             connection.query("UPDATE settings SET email='" + email + "', phone='" + phone + "', telephone='" + telephone + "', contact_email='" + contact_email + "', contact_phone='" + contact_phone + "', contact_telephone='" + contact_telephone + "', contact_address='" + contact_address + "', copyrights='" + copyrights + "', map_location='" + map_location + "' ", function (err, rows) {
                 connection.release();
                 if (!err) {
-                    res.json("updated");
+                    res.json("Updated");
                 } else {
-                    res.json("err");
+                    res.json("Error");
                 }
 
             });

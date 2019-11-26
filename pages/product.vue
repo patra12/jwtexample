@@ -12,59 +12,8 @@
 <script>
 import Card from "./card";
 export default {
-  name: "content",
-  components: { Card },
-  data: function() {
-    return {
-      name: "",
-      email: "",
-      phone: "",
-      gender: "",
-      message: "",
-      errors: [],
-      static_contact_data: [
-        {
-          company: "AvonaSupply.com",
-          ph1: "(877) 77-AVONA",
-          ph2: "(877) 772-8662",
-          email: "sales@avonasupply.com"
-        }
-      ]
-    };
-  },
-  methods: {
-    checkForm: function(e) {
-      this.errors = [];
-
-      if (!this.name) {
-        this.errors.push("name is required");
-      } else {
-        if (this.name < 5) {
-          this.errors.push("name must be more than 5 charectures.");
-        }
-      }
-
-      if (!this.email) {
-        this.errors.push("email cannot be empty");
-      }
-
-      if (!this.phone) {
-        this.errors.push("phone is required");
-      }
-
-      if (!this.gender) {
-        this.errors.push("Gender must requir");
-      }
-      if (!this.message) {
-        this.errors.push("message is rewuir");
-      } else {
-        if (this.message.split(" ").length < 10) {
-          this.errors.push("message should be more than 10 Words");
-        }
-      }
-      e.preventDefault();
-    }
-  }
+  name: "product",
+  components: { Card }
 };
 </script>
 

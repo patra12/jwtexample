@@ -5,11 +5,9 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-
-
+//configuring or setting body parser to get and read data coming from frontend
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-//app.use(express.json());
 
 
 // Import and Set Nuxt.js options
@@ -20,14 +18,11 @@ config.dev = process.env.NODE_ENV !== 'production'
 const rout = require('./router')
 app.use(rout);
 
+//Testing route at home
 app.get('/te', (req, res) => {
   res.send('hello from rout');
-  console.log(req);
 });
-app.post('/xo', (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
-});
+
 
 async function start() {
   // Init Nuxt.js

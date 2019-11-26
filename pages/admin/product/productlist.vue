@@ -1,5 +1,4 @@
 <template>
-   
   <v-container class="bv-example-row">
     <v-row class="border bg">
       <h4 class="font-weight-light">Product List</h4>
@@ -40,14 +39,11 @@
           </nuxt-link>
         </v-col>
       </div>
-
-
     </v-row>
   </v-container>
   <!-- <div>
     <v-table striped hover :items="items"></v-table>
   </div>-->
-      
 </template>
 <script>
 import axios from "axios";
@@ -67,23 +63,26 @@ export default {
       .then(res => {
         this.products = res.data;
       })
-      .catch(function(error) {
+      .catch(error => {
+        // handle error
         console.log(error);
       });
     axios;
   },
-   methods:{
-	delete_data(id){
-	  axios({
-	  url:" /deleteproduct/"+id,
-	  method:"get",
-	  })	
-	  .then(res=>{
-		  this.$router.go('/admin/product/productlist')
-	  	console.log(res.data);
-	  	
-	  });
-	}
+  methods: {
+    delete_data(id) {
+      axios({
+        url: " /deleteproduct/" + id,
+        method: "get"
+      })
+        .then(res => {
+          this.$router.go("/admin/product/productlist");
+        })
+        .catch(error => {
+          // handle error
+          console.log(error);
+        });
+    }
   }
 };
 </script>

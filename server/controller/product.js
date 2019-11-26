@@ -5,10 +5,9 @@ var methods = {
     productlist: function productlist(req, res) {
         pool.getConnection(function (err, connection) {
             if (err) {
-                res.json({ "code": 100, "status": "Error in connection database","error":err });
+                res.json({ "code": 100, "status": "Error in connection database", "error": err });
                 return;
             }
-            console.log('connected as id ' + connection.threadId);
             connection.query("select * from product", function (err, rows) {
                 connection.release();
                 if (!err) {
@@ -33,10 +32,7 @@ var methods = {
             var meta_description = req.body.meta_description;
             var meta_keywords = req.body.meta_keywords;
             var pdf_name = req.body.pdf_name;
-            var status ='active';
-            //let options = { width: 100, height: 100, responseType: 'base64' }
-            //const thumbnail = imageThumbnail("uploads/"+image, options);
-            //console.log("birja"+thumbnail);
+            var status = 'active';
 
             connection.query("INSERT INTO product (product_name, product_alias, product_description,feature_benefitas,feature_description,price, image,meta_title,meta_description,meta_keywords,pdf_name,status) VALUES ('" + product_name + "','" + product_alias + "','" + product_description + "','" + feature_benefitas + "','" + feature_description + "','" + price + "','" + image + "','" + meta_title + "','" + meta_description + "','" + meta_keywords + "','" + pdf_name + "','" + status + "')", function (err, rows) {
 
@@ -44,7 +40,7 @@ var methods = {
                 if (!err) {
                     res.json("Added");
                 } else {
-                    res.json("err");
+                    res.json("Error");
                 }
             });
         });
@@ -54,9 +50,7 @@ var methods = {
 
     editproduct: function editproduct(req, res) {
         pool.getConnection(function (err, connection) {
-            console.log("Fetching id: " + req.params.id);
             const pId = req.params.id;
-            console.log("birja", pId);
             connection.query("select * from product where id ='" + pId + "'", function (err, rows) {
 
                 connection.release();
@@ -71,8 +65,6 @@ var methods = {
 
     editpostproduct: function editpostproduct(req, res) {
         pool.getConnection(function (err, connection) {
-
-            console.log("Fetching id: " +req.body);
             const pId = req.params.id;
             var update = "UPDATE `product` SET";
             update += "`product_name`='" + req.body.product_name;
@@ -88,7 +80,7 @@ var methods = {
             update += "',`pdf_name`='" + req.body.pdf_name;
             update += "',`status`='" + "active";
             update += "' WHERE  `id`=" + req.params.id;
-            console.log(update);
+
             connection.query(update, function (err, rows) {
 
                 connection.release();
@@ -103,7 +95,6 @@ var methods = {
 
     deleteproduct: function deleteproduct(req, res) {
         pool.getConnection(function (err, connection) {
-            console.log("deleted id: " + req.params.id);
             const pId = req.params.id;
             connection.query("DELETE FROM product where id ='" + pId + "'", function (err, rows) {
 

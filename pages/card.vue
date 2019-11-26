@@ -40,10 +40,14 @@ export default {
     axios({
       url: "/productlist",
       methods: "get"
-    }).then(res => {
-      this.products = res.data;
-      console.log(res.data);
-    });
+    })
+      .then(res => {
+        this.products = res.data;
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      });
   }
 };
 </script>

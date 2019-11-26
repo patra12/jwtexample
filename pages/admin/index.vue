@@ -35,23 +35,18 @@ export default {
     email: "",
     password: "",
     alert: null
-    
   }),
   methods: {
     checkLogin() {
-      this.alert = null
+      this.alert = null;
       var form = new FormData();
       var staticEmail = "admin@admin.com";
       var staticPassword = "admin123#";
-      if((this.email==staticEmail)&&(this.password==staticPassword))
-      {
-        this.$router.push('/admin/dashboard')
+      if (this.email == staticEmail && this.password == staticPassword) {
+        this.$router.push("/admin/dashboard");
+      } else {
+        this.alert = { value: true, type: "error", message: "Invalid Login." };
       }
-      else{
-        this.alert = {value: true, type: 'error', message: "Invalid Login."}
-        console.log("Login incorrect");
-      }
-      
     }
   }
 };

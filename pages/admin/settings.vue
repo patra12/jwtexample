@@ -44,13 +44,13 @@
                 required
               ></v-text-field>
               <v-textarea
-          type="text"
+                type="text"
                 v-model="map_location"
                 :rules="copyrightsRules"
                 label="Map Location"
                 required
               ></v-textarea>
-              <p style=color:blue; >{{message}}</p>
+              <p style="color:blue;">{{message}}</p>
 
               <v-btn class="my-5 float-right" @click="updateSettings()" large color="primary">Update</v-btn>
             </v-form>
@@ -85,53 +85,61 @@ export default {
       contact_addressRules: [v => !!v || "Title is required"],
       copyrights: "",
       copyrightsRules: [v => !!v || "Title is required"],
-      map_location: "",
+      map_location: ""
     };
   },
   created() {
     axios({
       method: "get",
-      url: " /settingsData",
-    }).then(res => {
-      this._data.email = res.data[0].email;
-      this._data.phone = res.data[0].phone;
-      this._data.telephone = res.data[0].telephone;
-      this._data.contact_email = res.data[0].contact_email;
-      this._data.contact_phone = res.data[0].contact_phone;
-      this._data.contact_telephone = res.data[0].contact_telephone;
-      this._data.contact_address = res.data[0].contact_address;
-      this._data.copyrights = res.data[0].copyrights;
-      this._data.map_location = res.data[0].map_location;
-    });
+      url: " /settingsData"
+    })
+      .then(res => {
+        this._data.email = res.data[0].email;
+        this._data.phone = res.data[0].phone;
+        this._data.telephone = res.data[0].telephone;
+        this._data.contact_email = res.data[0].contact_email;
+        this._data.contact_phone = res.data[0].contact_phone;
+        this._data.contact_telephone = res.data[0].contact_telephone;
+        this._data.contact_address = res.data[0].contact_address;
+        this._data.copyrights = res.data[0].copyrights;
+        this._data.map_location = res.data[0].map_location;
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      });
   },
   methods: {
     updateSettings() {
       var setting = {
-          data: {
-            email: this.email,
-            phone: this.phone,
-            telephone: this.telephone,
-            contact_email: this.contact_email,
-            contact_phone: this.contact_phone,
-            contact_telephone: this.contact_telephone,
-            contact_address: this.contact_address,
-            copyrights: this.copyrights,
-            map_location: this.map_location
-          }
-      }
+        data: {
+          email: this.email,
+          phone: this.phone,
+          telephone: this.telephone,
+          contact_email: this.contact_email,
+          contact_phone: this.contact_phone,
+          contact_telephone: this.contact_telephone,
+          contact_address: this.contact_address,
+          copyrights: this.copyrights,
+          map_location: this.map_location
+        }
+      };
       axios({
         url: " /settingsPostData",
         method: "POST",
         headers: {
-          'Content-Type': 'application/json;charset=UTF-8',
-          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "*"
         },
         data: JSON.stringify(setting)
-      }).then(res => {
-            this.message = "Data is updated successfully"
-
-        console.log("birja",res);
-      });
+      })
+        .then(res => {
+          this.message = "Data is updated successfully";
+        })
+        .catch(error => {
+          // handle error
+          console.log(error);
+        });
     }
   }
 };

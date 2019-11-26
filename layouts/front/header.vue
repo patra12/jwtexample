@@ -77,19 +77,17 @@ export default {
   data() {
     return {
       static_contact_data: [],
-      display:0
+      display: 0
     };
   },
   methods: {
     showMenu() {
-      if(this.display == 0)
-      {
-        document.getElementById("collapsibleNavbar").style.display ="block";
+      if (this.display == 0) {
+        document.getElementById("collapsibleNavbar").style.display = "block";
         this.display = 1;
-      }
-      else{
-         document.getElementById("collapsibleNavbar").style.display ="none";
-         this.display = 0
+      } else {
+        document.getElementById("collapsibleNavbar").style.display = "none";
+        this.display = 0;
       }
     }
   },
@@ -97,10 +95,14 @@ export default {
     axios({
       method: "get",
       url: " /settingsData"
-    }).then(res => {
-      console.log(res.data);
-      this.static_contact_data = res.data;
-    });
+    })
+      .then(res => {
+        this.static_contact_data = res.data;
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      });
   }
 };
 </script>

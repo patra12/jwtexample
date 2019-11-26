@@ -6,7 +6,7 @@
           <aside class="col-sm-6 border-right">
             <article class="gallery-wrap">
               <div class="img-big-wrap">
-                  <img :src = "getImg(image)" alt />
+                <img :src="getImg(image)" alt />
               </div>
               <!-- slider-product.// -->
             </article>
@@ -16,9 +16,7 @@
             <article class="card-body p-5">
               <h1 class="price h1 text-themeColor text-center">{{product_name}}</h1>
 
-              <p
-                class="price-detail-wrap" v-html="product_description"
-              ></p>
+              <p class="price-detail-wrap" v-html="product_description"></p>
               <h3 class="price h3 text-themeColor text-center">{{feature_benefitas}}</h3>
               <!-- price-detail-wrap .// -->
               <div v-html="feature_description"></div>
@@ -46,7 +44,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      pid:"",
+      pid: "",
       product_name: "",
       product_alias: "",
       product_description: "",
@@ -61,30 +59,34 @@ export default {
     };
   },
   methods: {
-   getImg: function(img) {
+    getImg: function(img) {
       let img_path = require("../uploads/product/" + img);
       return img_path;
-    },
+    }
   },
   created() {
     axios({
       url: " /editproduct/" + this.$route.params.id,
       method: "get"
-    }).then(res => {
-      this.pid = res.data[0].id;
-      this.product_name = res.data[0].product_name;
-      this.product_alias = res.data[0].product_alias;
-      this.product_description = res.data[0].product_description;
-      this.feature_benefitas = res.data[0].feature_benefitas;
-      this.feature_description = res.data[0].feature_description;
-      this.price = res.data[0].price;
-      this.image = res.data[0].image;
-      this.meta_title = res.data[0].meta_title;
-      this.meta_keywords = res.data[0].meta_keywords;
-      this.meta_description = res.data[0].meta_description;
-      this.pdf_name = res.data[0].pdf_name;
-      console.log(res.data);
-    });
+    })
+      .then(res => {
+        this.pid = res.data[0].id;
+        this.product_name = res.data[0].product_name;
+        this.product_alias = res.data[0].product_alias;
+        this.product_description = res.data[0].product_description;
+        this.feature_benefitas = res.data[0].feature_benefitas;
+        this.feature_description = res.data[0].feature_description;
+        this.price = res.data[0].price;
+        this.image = res.data[0].image;
+        this.meta_title = res.data[0].meta_title;
+        this.meta_keywords = res.data[0].meta_keywords;
+        this.meta_description = res.data[0].meta_description;
+        this.pdf_name = res.data[0].pdf_name;
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      });
   }
 };
 </script>

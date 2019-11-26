@@ -72,10 +72,8 @@
       </div>
     </div>
     <div class="row pb-5">
-      <div class="col" v-for="(item,index) in static_contact_data"
-        :key="index">
+      <div class="col" v-for="(item,index) in static_contact_data" :key="index">
         <div v-html="item.map_location"></div>
-        
       </div>
     </div>
   </div>
@@ -99,12 +97,16 @@ export default {
     axios({
       method: "get",
       url: " /settingsData"
-    }).then(res => {
-      console.log(res.data);
-      this.static_contact_data = res.data;
-    });
+    })
+      .then(res => {
+        this.static_contact_data = res.data;
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      });
   },
-  methods: {  
+  methods: {
     sendmail() {
       var mailData = {
         name: this.name,
@@ -112,19 +114,22 @@ export default {
         phone: this.phone,
         message: this.message
       };
-      console.log(mailData);
       axios({
         method: "post",
         url: " /sendMail",
         data: mailData
-      }).then(res => {
-        (this.name = ""),
-          (this.email = ""),
-          (this.phone = ""),
-          (this.message = ""),
-          (this.mail_delevery = res.data),
-          console.log(res.data);
-      });
+      })
+        .then(res => {
+          (this.name = ""),
+            (this.email = ""),
+            (this.phone = ""),
+            (this.message = ""),
+            (this.mail_delevery = res.data);
+        })
+        .catch(error => {
+          // handle error
+          console.log(error);
+        });
     }
   }
 };
@@ -151,7 +156,7 @@ export default {
   box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
 }
-[type=number] {
-    width: 100%;
+[type="number"] {
+  width: 100%;
 }
 </style>

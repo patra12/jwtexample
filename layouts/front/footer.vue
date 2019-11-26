@@ -19,7 +19,12 @@
             </div>
             <div class="col side-nav p-0">
               <nav class="nav flex-row justify-content-end bottom-links">
-                <nuxt-link v-for="(item,index) in products" :key="index" :to="'/'+item.id" class="avona-btn nav-link">{{item.product_name}}</nuxt-link>
+                <nuxt-link
+                  v-for="(item,index) in products"
+                  :key="index"
+                  :to="'/'+item.id"
+                  class="avona-btn nav-link"
+                >{{item.product_name}}</nuxt-link>
               </nav>
             </div>
           </div>
@@ -42,27 +47,35 @@ export default {
   data() {
     return {
       products: [],
-      settings:'',
+      settings: ""
     };
   },
   mounted() {
     axios({
       url: "/productlist",
       methods: "get"
-    }).then(res => {
-      this.products = res.data;
-      console.log(res.data);
-    });
+    })
+      .then(res => {
+        this.products = res.data;
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      });
 
     axios({
       url: "/settingsData",
       methods: "get"
-    }).then(res => {
-      this.settings = res.data[0].copyrights;
-      console.log(res.data);
-    });
+    })
+      .then(res => {
+        this.settings = res.data[0].copyrights;
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      });
   }
-}
+};
 </script>
 <style scoped>
 .top-nav {
