@@ -50,7 +50,7 @@
                 label="Map Location"
                 required
               ></v-textarea>
-              <v-text-field
+              <!-- <v-text-field
                 v-model="dashboardTitle"
                 :rules="dashboardTitleRules"
                 label="Dashboard Title"
@@ -62,7 +62,7 @@
                 :rules="dashboardContentRules"
                 label="Dashboard Content"
                 required
-              ></v-textarea>
+              ></v-textarea>-->
               <p style="color:blue;">{{message}}</p>
 
               <v-btn class="my-5 float-right" @click="updateSettings()" large color="primary">Update</v-btn>
