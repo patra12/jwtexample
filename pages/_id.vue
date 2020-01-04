@@ -40,7 +40,6 @@
   </section>
 </template>
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
@@ -60,13 +59,14 @@ export default {
   },
   methods: {
     getImg: function(img) {
-      let img_path = require("../uploads/product/" + img);
+      let img_path = "/_nuxt/img/" + img;
+      // console;
       return img_path;
     }
   },
   created() {
-    axios({
-      url: " /editproduct/" + this.$route.params.id,
+    this.$axios({
+      url: "/editproduct/" + this.$route.params.id,
       method: "get"
     })
       .then(res => {

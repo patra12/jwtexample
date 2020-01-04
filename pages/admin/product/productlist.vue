@@ -1,7 +1,7 @@
 <template>
   <v-container class="bv-example-row">
     <v-row class="border bg">
-      <h4 class="font-weight-light">Product List</h4>
+      <h4 class="font-weight-light" id="productList">Product List</h4>
       <nuxt-link to="./addProduct">
         <v-icon class="right" color="white darken-1" title="Add page">mdi-plus-box</v-icon>
       </nuxt-link>
@@ -46,7 +46,7 @@
   </div>-->
 </template>
 <script>
-import axios from "axios";
+import "~/assets/css/admin.css";
 export default {
   layout: "admin/defaultAdmin",
 
@@ -56,9 +56,9 @@ export default {
     };
   },
   created() {
-    axios({
+    this.$axios({
       method: "get",
-      url: " /productlist"
+      url: "/productlist"
     })
       .then(res => {
         this.products = res.data;
@@ -67,12 +67,11 @@ export default {
         // handle error
         console.log(error);
       });
-    axios;
   },
   methods: {
     delete_data(id) {
-      axios({
-        url: " /deleteproduct/" + id,
+      this.$axios({
+        url: "/deleteproduct/" + id,
         method: "get"
       })
         .then(res => {
@@ -86,33 +85,5 @@ export default {
   }
 };
 </script>
-<style scoped>
-/* repeat */
-h4 {
-  padding: 12px 35px;
-  margin-bottom: 0px;
-}
-.bg {
-  background-color: #60bb23;
-  position: relative;
-  border-top-left-radius: 5px;
-  color: white;
-  border-top-right-radius: 5px;
-}
-.bg-content {
-  background: white;
-}
 
-.right {
-  position: absolute;
-  right: 35px;
-  top: 10px;
-  font-size: 33px;
-}
-/* non */
-.border.font-weight-light {
-  font-size: 13px;
-  font-weight: bold;
-}
-</style>
 

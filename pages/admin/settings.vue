@@ -50,6 +50,19 @@
                 label="Map Location"
                 required
               ></v-textarea>
+              <v-text-field
+                v-model="dashboardTitle"
+                :rules="dashboardTitleRules"
+                label="Dashboard Title"
+                required
+              ></v-text-field>
+              <v-textarea
+                type="text"
+                v-model="dashboardContent"
+                :rules="dashboardContentRules"
+                label="Dashboard Content"
+                required
+              ></v-textarea>
               <p style="color:blue;">{{message}}</p>
 
               <v-btn class="my-5 float-right" @click="updateSettings()" large color="primary">Update</v-btn>
@@ -61,8 +74,6 @@
   </v-container>
 </template>
 <script>
-import defaultAdminVue from "../../layouts/admin/defaultAdmin.vue";
-import axios from "axios";
 export default {
   layout: "admin/defaultAdmin",
   data() {
@@ -89,9 +100,9 @@ export default {
     };
   },
   created() {
-    axios({
+    this.$axios({
       method: "get",
-      url: " /settingsData"
+      url: "/settingsData"
     })
       .then(res => {
         this._data.email = res.data[0].email;
@@ -124,7 +135,7 @@ export default {
           map_location: this.map_location
         }
       };
-      axios({
+      this.$axios({
         url: " /settingsPostData",
         method: "POST",
         headers: {

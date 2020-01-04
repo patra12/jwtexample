@@ -7,12 +7,12 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - ' + "Dimond Tools"|| process.env.npm_package_name,
+    titleTemplate: '%s - ' + "Dimond Tools" || process.env.npm_package_name,
     title: 'Avona',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: "Avona - diamond tools" || process.env.npm_package_description  }
+      { hid: 'description', name: 'description', content: "Avona - diamond tools" || process.env.npm_package_description }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -26,11 +26,15 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    'quill/dist/quill.snow.css',
+    'quill/dist/quill.bubble.css',
+    'quill/dist/quill.core.css'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/editor', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -50,7 +54,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL:process.env.BASE_URL || "http://localhost:3000"
+    baseURL: process.env.BASE_URL || "http://localhost:3000"
   },
   /*
   ** vuetify module configuration
@@ -76,7 +80,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }

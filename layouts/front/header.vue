@@ -72,7 +72,7 @@
   </header>
 </template>
 <script>
-import axios from "axios";
+import "~/assets/css/style.css";
 export default {
   data() {
     return {
@@ -92,9 +92,9 @@ export default {
     }
   },
   created() {
-    axios({
+    this.$axios({
       method: "get",
-      url: " /settingsData"
+      url: "/settingsData"
     })
       .then(res => {
         this.static_contact_data = res.data;

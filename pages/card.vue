@@ -2,14 +2,17 @@
   <div class="row py-5 my-5">
     <div class="col-sm-4" v-for="(item,index) in products" :key="index">
       <div class="m-2 card text-center">
-        <div class="card-body pb-0">
-          <img :src="getImg(item.image)" class="card-img-top" alt />
-          <h3 class="card-title">{{item.product_name }}</h3>
-          <p class="card-text text-left">{{smllstr(item.meta_title)}}</p>
-        </div>
+        <nuxt-link class="card-body nutrlize-style" :to="'/'+item.id">
+          <div class="pb-0">
+            <img :src="getImg(item.image)" class="card-img-top" alt />
+            <h3 class="card-title">{{item.product_name }}</h3>
+            <p class="card-text text-left">{{smllstr(item.meta_title)}}</p>
+          </div>
+        </nuxt-link>
         <nuxt-link :to="'/'+item.id" class="avona-btn">Read More</nuxt-link>
         <!--End of card-body-->
       </div>
+
       <!-- End of card-->
     </div>
     <!--End of col-->
@@ -18,7 +21,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import "~/assets/css/style.css";
 export default {
   data() {
     return {
@@ -37,7 +40,7 @@ export default {
     }
   },
   mounted() {
-    axios({
+    this.$axios({
       url: "/productlist",
       methods: "get"
     })
@@ -53,39 +56,15 @@ export default {
 </script>
 
 <style scoped>
-.card-body {
-  position: relative;
-}
-
-.card {
-  -webkit-box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-}
-.btn {
-  background-color: coral;
-  border: none;
-}
-.card:hover .card-img-top {
-  size: 50%;
-}
 .avona-btn {
   background: #f05a25;
-  color: #fff;
+  color: #fff !important;
   padding: 7px;
   font-size: 17px;
   font-weight: 500;
 }
-.card-body img {
-  transition: transform 0.5s ease;
-}
-.card-body:hover img {
-  transform: scale(1.1) rotate(50deg);
-}
-.card-body h3 {
-  text-transform: uppercase;
+.nutrlize-style {
+  color: black;
+  text-decoration: none;
 }
 </style>

@@ -42,7 +42,6 @@
   </footer>
 </template>
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
@@ -51,7 +50,7 @@ export default {
     };
   },
   mounted() {
-    axios({
+    this.$axios({
       url: "/productlist",
       methods: "get"
     })
@@ -63,12 +62,14 @@ export default {
         console.log(error);
       });
 
-    axios({
+    this.$axios({
       url: "/settingsData",
       methods: "get"
     })
       .then(res => {
-        this.settings = res.data[0].copyrights;
+        // this.settings = res.data[0].copyrights;
+
+        console.log(res);
       })
       .catch(error => {
         // handle error
@@ -108,11 +109,7 @@ export default {
   padding: 20px 0;
   max-width: 250px;
 }
-.navbar-dark .navbar-nav .nav-link {
-  color: rgb(240, 90, 37);
-  font-size: 17px;
-  font-weight: 600;
-}
+
 .ico-text {
   color: #fff;
   display: flex;

@@ -1,0 +1,46 @@
+.head {
+  background-color: #60bb23;
+  position: relative;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.bg-content {
+  background: white;
+}
+h4 {
+  padding: 0px 14px;
+  margin-bottom: 0px;
+  color: white;
+}
+.right {
+  position: absolute;
+  right: 35px;
+  top: 10px;
+  font-size: 33px;
+}
+#productList {
+  padding: 12px 35px;
+  margin-bottom: 0px;
+  color: white;
+}
+.bg {
+  background-color: #60bb23;
+  position: relative;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+/*product list text style*/
+
+.border.font-weight-light {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/*Quill Editor style*/
+
+.quill-editor {
+  min-height: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+}

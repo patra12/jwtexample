@@ -18,17 +18,15 @@
               <v-text-field v-model="product_alias" label="Product alias" required></v-text-field>
 
               <p class="grey--text text--darken-1 pt-3 mb-0">Product Description</p>
-              <!-- <vue-editor v-model="product_description" class="py-5"></vue-editor> -->
-              <v-textarea type="text" v-model="product_description"></v-textarea>
+              <div class="quill-editor" v-model="product_description" v-quill:product></div>
 
               <v-text-field v-model="feature_benefitas" label="Feature benefitas" required></v-text-field>
 
               <p class="grey--text text--darken-1 pt-3 mb-0">Feature Description</p>
-              <!-- <vue-editor v-model="feature_description" class="py-5"></vue-editor> -->
-
-              <v-textarea type="text" v-model="feature_description"></v-textarea>
+              <div class="quill-editor" v-model="feature_description" v-quill:feature></div>
 
               <v-text-field v-model="price" label="Price" required></v-text-field>
+
               <v-text-field v-model="image" label="Image" required></v-text-field>
 
               <v-text-field v-model="meta_title" label="Meta title" required></v-text-field>
@@ -49,7 +47,7 @@
 </template>
 <script>
 import { VueEditor } from "vue2-editor";
-import axios from "axios";
+import "~/assets/css/admin.css";
 export default {
   layout: "admin/defaultAdmin",
   components: {
@@ -77,8 +75,8 @@ export default {
     metaDescriptionRules: [v => !!v || "Meta Description is required"]*/
   }),
   created() {
-    axios({
-      url: " /editproduct/" + this.$route.params.id,
+    this.$axios({
+      url: "/editproduct/" + this.$route.params.id,
       method: "get"
     })
       .then(res => {
@@ -127,8 +125,8 @@ export default {
         meta_keywords: this.meta_keywords,
         pdf_name: this.pdf_name
       };
-      axios({
-        url: " /editpostproduct/" + this.$route.params.id,
+      this.$axios({
+        url: "/editpostproduct/" + this.$route.params.id,
         method: "put",
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
@@ -147,26 +145,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-/* repeat */
-.head {
-  background-color: #60bb23;
-  position: relative;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-.bg-content {
-  background: white;
-}
-h4 {
-  padding: 0px 14px;
-  margin-bottom: 0px;
-}
-.right {
-  position: absolute;
-  right: 35px;
-  top: 10px;
-  font-size: 33px;
-}
-/* non */
-</style>
+

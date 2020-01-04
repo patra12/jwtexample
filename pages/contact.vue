@@ -80,7 +80,8 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
+import "~/assets/css/style.css";
 export default {
   data: function() {
     return {
@@ -94,9 +95,9 @@ export default {
     };
   },
   created() {
-    axios({
+    this.$axios({
       method: "get",
-      url: " /settingsData"
+      url: "/settingsData"
     })
       .then(res => {
         this.static_contact_data = res.data;
@@ -114,9 +115,9 @@ export default {
         phone: this.phone,
         message: this.message
       };
-      axios({
+      this.$axios({
         method: "post",
-        url: " /sendMail",
+        url: "/sendMail",
         data: mailData
       })
         .then(res => {
@@ -135,28 +136,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.h1 {
-  text-align: center;
-  padding-bottom: 10px;
-}
-.sub-header {
-  color: #f05a25;
-  font-weight: bold;
-  line-height: 1.286em;
-}
-.rightsideBLOCK {
-  font-size: 20px;
-  padding-left: 25px;
-}
-.frmOutside {
-  padding: 20px;
-  -webkit-box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 33px -12px rgba(0, 0, 0, 0.75);
-  border-radius: 10px;
-}
-[type="number"] {
-  width: 100%;
-}
-</style>

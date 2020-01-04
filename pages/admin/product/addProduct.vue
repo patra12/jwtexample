@@ -17,15 +17,17 @@
 
               <v-text-field v-model="product_alias" label="Product alias" required></v-text-field>
               <p class="grey--text text--darken-1 pt-3 mb-0">Product Description</p>
-              <v-textarea type="text" v-model="product_description"></v-textarea>
+              <!-- <v-textarea type="text" v-model="product_description"></v-textarea> -->
               <!-- <vue-editor v-model="product_description" class="py-5"></vue-editor> -->
+              <div class="quill-editor" v-model="product_description" v-quill:product></div>
 
               <v-text-field v-model="feature_benefitas" label="Feature benefitas" required></v-text-field>
               <p class="grey--text text--darken-1 pt-3 mb-0">Feature Description</p>
 
               <!-- <vue-editor v-model="feature_description" class="py-5"></vue-editor> -->
+              <div class="quill-editor" v-model="feature_description" v-quill:feature></div>
 
-              <v-textarea type="text" v-model="feature_description"></v-textarea>
+              <!-- <v-textarea type="text" v-model="feature_description"></v-textarea> -->
 
               <v-text-field v-model="price" label="Price" required></v-text-field>
 
@@ -49,8 +51,7 @@
   </v-container>
 </template>
 <script>
-//import { VueEditor } from "vue2-editor";
-import axios from "axios";
+import "~/assets/css/admin.css";
 export default {
   layout: "admin/defaultAdmin",
   components: {
@@ -88,8 +89,8 @@ export default {
       form.append("meta_description", this.meta_description);
       form.append("meta_keywords", this.meta_keywords);
       form.append("pdf_name", this.pdf_name);
-      axios({
-        url: " /addproduct",
+      this.$axios({
+        url: "/addproduct",
         method: "POST",
         headers: {
           header: { "Content-Type": "multipart/form-data" }
@@ -109,26 +110,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-/* repeat */
-.head {
-  background-color: #60bb23;
-  position: relative;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-.bg-content {
-  background: white;
-}
-h4 {
-  padding: 0px 14px;
-  margin-bottom: 0px;
-}
-.right {
-  position: absolute;
-  right: 35px;
-  top: 10px;
-  font-size: 33px;
-}
-/* non */
-</style>

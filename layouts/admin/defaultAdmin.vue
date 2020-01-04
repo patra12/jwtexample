@@ -38,10 +38,6 @@
         <nuxt />
       </v-container>
     </v-content>
-
-    <v-footer :fixed="fixed" app>
-      <span>&copy; 2019</span>
-    </v-footer>
   </v-app>
 </template>
 
@@ -67,7 +63,7 @@ export default {
           icon: "mdi-wrench",
           title: "Settings",
           to: "/admin/settings"
-         },
+        }
       ],
       miniVariant: false,
       right: true,
