@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     getImg: function(img) {
-      let img_path = "https://nuxt-auth-kus.herokuapp.com/" + img;
+      let img_path = "https://nuxt-auth-kus.herokuapp.com/product/" + img;
       // console;
       return img_path;
     }
