@@ -23,6 +23,8 @@ app.get('/te', (req, res) => {
   res.send('hello from rout');
 });
 
+//static url for images
+app.use('/product', express.static('uploads/product'));
 
 async function start() {
   // Init Nuxt.js
