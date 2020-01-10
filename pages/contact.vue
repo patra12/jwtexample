@@ -52,6 +52,7 @@
                 v-model="phone"
                 id="number"
                 @change="checkName()"
+                style="width:100%"
               />
               <section class="pt-3 black-gra text-danger">{{phoneRule}}</section>
             </div>
