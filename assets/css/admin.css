@@ -12,6 +12,9 @@ h4 {
   margin-bottom: 0px;
   color: white;
 }
+h6{
+color:red;
+}
 .right {
   position: absolute;
   right: 35px;

@@ -14,7 +14,15 @@
                 Name
                 <span class="text-danger">*</span>
               </label>
-              <input class="form-control" type="text" name="name" v-model="name" id="name" />
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                v-model="name"
+                id="name"
+                @change="checkName()"
+              />
+              <section class="pt-3 black-gra text-danger">{{nameRule}}</section>
             </div>
             <div class="form-group">
               <label for="email">
@@ -22,6 +30,7 @@
                 <span class="text-danger">*</span>
               </label>
               <input class="form-control" type="email" name="email" v-model="email" id="emial" />
+              <section class="pt-3 black-gra text-danger">{{nameRule}}</section>
             </div>
             <div class="form-group"></div>
             <div class="form-group">
@@ -30,6 +39,7 @@
                 <span class="text-danger">*</span>
               </label>
               <input class="form-control" type="number" name="number" v-model="phone" id="number" />
+              <section class="pt-3 black-gra text-danger">{{nameRule}}</section>
             </div>
 
             <div class="form-group">
@@ -38,6 +48,7 @@
                 <span class="text-danger">*</span>
               </label>
               <textarea class="form-control" rows="5" v-model="message"></textarea>
+              <section class="pt-3 black-gra text-danger">{{nameRule}}</section>
             </div>
             <div class="form-group text-center">
               <button class="btn btn-primary px-5">
@@ -71,11 +82,6 @@
         </p>
       </div>
     </div>
-    <div class="row pb-5">
-      <div class="col" v-for="(item,index) in static_contact_data" :key="index">
-        <div v-html="item.map_location"></div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -90,8 +96,12 @@ export default {
       phone: "",
       message: "",
       mail_delevery: "",
-      errors: [],
-      static_contact_data: []
+      error: 0,
+      static_contact_data: [],
+      nameRule: "",
+      emailRule: "",
+      phoneRule: "",
+      message: ""
     };
   },
   created() {
@@ -108,29 +118,60 @@ export default {
       });
   },
   methods: {
+    //for validation
+    checkName() {
+      if (this.name == "") {
+        this.nameRule = "Name is required.";
+      } else if (this.name < 5) {
+        this.nameRule = "Name must be more thean 5 chracters.";
+      }
+    },
+    checkEmail() {},
+    checkPhone() {
+      if (this.phone == "") {
+        this.phoneRule = "Phone is required.";
+      } else if (this.name < 5) {
+        this.phoneRule = "This is not a phone number.please correct one";
+      }
+    },
+    checkMessage() {
+      if (this.message == "") {
+        this.messageRule = "message is required.";
+      } else if (this.message < 100) {
+        this.messageRule = "message must be more than 100 cheracter.";
+      }
+    },
+
+    //for sending mail
     sendmail() {
-      var mailData = {
-        name: this.name,
-        email: this.email,
-        phone: this.phone,
-        message: this.message
-      };
-      this.$axios({
-        method: "post",
-        url: "/sendMail",
-        data: mailData
-      })
-        .then(res => {
-          (this.name = ""),
-            (this.email = ""),
-            (this.phone = ""),
-            (this.message = ""),
-            (this.mail_delevery = res.data);
+      this.checkName();
+      this.checkEmail();
+      this.checkPhone();
+      this.checkMessage();
+      if (error == 0) {
+        var mailData = {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          message: this.message
+        };
+        this.$axios({
+          method: "post",
+          url: "/sendMail",
+          data: mailData
         })
-        .catch(error => {
-          // handle error
-          console.log(error);
-        });
+          .then(res => {
+            (this.name = ""),
+              (this.email = ""),
+              (this.phone = ""),
+              (this.message = ""),
+              (this.mail_delevery = res.data);
+          })
+          .catch(error => {
+            // handle error
+            console.log(error);
+          });
+      }
     }
   }
 };

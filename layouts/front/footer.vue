@@ -67,9 +67,7 @@ export default {
       methods: "get"
     })
       .then(res => {
-        // this.settings = res.data[0].copyrights;
-
-        console.log(res);
+        this.settings = res.data[0].copyrights;
       })
       .catch(error => {
         // handle error

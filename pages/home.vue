@@ -4,7 +4,6 @@
       <div class="container">
         <h2 class="display-3 mb-4">{{title}}</h2>
         <p class="lead mb-2">{{subTitle}}</p>
-        <nuxt-link class="btn btnx btn-lg text-dark" to="/product" role="button">Know more</nuxt-link>
       </div>
     </section>
 

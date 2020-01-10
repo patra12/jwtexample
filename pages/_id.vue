@@ -19,7 +19,7 @@
               <p class="price-detail-wrap" v-html="product_description"></p>
               <h3 class="price h3 text-themeColor text-center">{{feature_benefitas}}</h3>
               <!-- price-detail-wrap .// -->
-              <div v-html="feature_description"></div>
+              <div id="feature_description" v-html="feature_description"></div>
               <!-- item-property-hor .// -->
             </article>
             <!-- card-body.// -->
@@ -127,5 +127,18 @@ export default {
 }
 .footer-pdf a:hover {
   text-decoration: none;
+}
+/* #feature_description {
+  margin-bottom: 10px;
+  color: red;
+} */
+
+#feature_description > p:nth-child(1) {
+  color: red;
+  margin-bottom: 0px;
+}
+
+#feature_description h6 {
+  color: red;
 }
 </style>
