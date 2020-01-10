@@ -51,7 +51,7 @@
                 name="number"
                 v-model="phone"
                 id="number"
-                @change="checkPhone()"
+                @change="checkName()"
               />
               <section class="pt-3 black-gra text-danger">{{phoneRule}}</section>
             </div>
