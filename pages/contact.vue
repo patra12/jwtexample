@@ -51,7 +51,7 @@
                 name="number"
                 v-model="phone"
                 id="number"
-                @change="checkName()"
+                @change="checkPhone()"
                 style="width:100%"
               />
               <section class="pt-3 black-gra text-danger">{{phoneRule}}</section>
@@ -138,14 +138,14 @@ export default {
       if (this.name == "") {
         this.nameRule = "Name is required.";
         this.error++;
-      }
-      if (this.name.length < 5) {
+      } else if (this.name.length < 5) {
         this.nameRule = "Name must be more thean 5 chracters.";
         this.error++;
       } else {
         this.nameRule = "";
         this.error = 0;
       }
+      console.log(this.error);
     },
     checkEmail() {
       if (this.email == "") {
@@ -155,18 +155,21 @@ export default {
         this.emailRule = "";
         this.error = 0;
       }
+      console.log(this.error);
     },
     checkPhone() {
       if (this.phone == "") {
         this.phoneRule = "Phone is required.";
         this.error++;
-      } else if (this.phone.length < 5) {
+      }
+      if (this.phone.length < 5) {
         this.phoneRule = "This is not a phone number.please correct one";
         this.error++;
       } else {
         this.phoneRule = "";
         this.error = 0;
       }
+      console.log(this.phone.length < 10);
     },
     checkMessage() {
       if (this.message == "") {
@@ -179,6 +182,7 @@ export default {
         this.messageRule = "";
         this.error = 0;
       }
+      console.log(this.error);
     },
 
     //for sending mail
@@ -211,6 +215,7 @@ export default {
             console.log(error);
           });
       }
+      console.log(this.error, "ph =>" + this.phone);
     }
   }
 };

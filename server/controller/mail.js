@@ -22,7 +22,7 @@ var methods = {
         // Step 2 (composing mail)
         let mailOptions = {
             from: 'test.blade@yandex.com', // TODO: email sender
-            to: 'zuspeyekna@enayu.com', // TODO: email receiver deepak09@gmail.com
+            to: 'soumitra.kus@gmail.com', // TODO: email receiver deepak09@gmail.com
             subject: req.body.name,
             html: mailData
         };
