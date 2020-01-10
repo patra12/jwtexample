@@ -29,8 +29,15 @@
                 email
                 <span class="text-danger">*</span>
               </label>
-              <input class="form-control" type="email" name="email" v-model="email" id="emial" />
-              <section class="pt-3 black-gra text-danger">{{nameRule}}</section>
+              <input
+                class="form-control"
+                type="email"
+                name="email"
+                v-model="email"
+                id="emial"
+                @change="checkEmail()"
+              />
+              <section class="pt-3 black-gra text-danger">{{emailRule}}</section>
             </div>
             <div class="form-group"></div>
             <div class="form-group">
@@ -38,8 +45,15 @@
                 Phone
                 <span class="text-danger">*</span>
               </label>
-              <input class="form-control" type="number" name="number" v-model="phone" id="number" />
-              <section class="pt-3 black-gra text-danger">{{nameRule}}</section>
+              <input
+                class="form-control"
+                type="number"
+                name="number"
+                v-model="phone"
+                id="number"
+                @change="checkPhone()"
+              />
+              <section class="pt-3 black-gra text-danger">{{phoneRule}}</section>
             </div>
 
             <div class="form-group">
@@ -47,8 +61,8 @@
                 Message
                 <span class="text-danger">*</span>
               </label>
-              <textarea class="form-control" rows="5" v-model="message"></textarea>
-              <section class="pt-3 black-gra text-danger">{{nameRule}}</section>
+              <textarea class="form-control" rows="5" v-model="message" @change="checkMessage()"></textarea>
+              <section class="pt-3 black-gra text-danger">{{messageRule}}</section>
             </div>
             <div class="form-group text-center">
               <button class="btn btn-primary px-5">
@@ -101,7 +115,7 @@ export default {
       nameRule: "",
       emailRule: "",
       phoneRule: "",
-      message: ""
+      messageRule: ""
     };
   },
   created() {
@@ -122,23 +136,47 @@ export default {
     checkName() {
       if (this.name == "") {
         this.nameRule = "Name is required.";
-      } else if (this.name < 5) {
+        this.error++;
+      }
+      if (this.name.length < 5) {
         this.nameRule = "Name must be more thean 5 chracters.";
+        this.error++;
+      } else {
+        this.nameRule = "";
+        this.error = 0;
       }
     },
-    checkEmail() {},
+    checkEmail() {
+      if (this.email == "") {
+        this.emailRule = "Emial is required.";
+        this.error++;
+      } else {
+        this.emailRule = "";
+        this.error = 0;
+      }
+    },
     checkPhone() {
       if (this.phone == "") {
         this.phoneRule = "Phone is required.";
-      } else if (this.name < 5) {
+        this.error++;
+      } else if (this.phone.length < 5) {
         this.phoneRule = "This is not a phone number.please correct one";
+        this.error++;
+      } else {
+        this.phoneRule = "";
+        this.error = 0;
       }
     },
     checkMessage() {
       if (this.message == "") {
+        this.error++;
         this.messageRule = "message is required.";
-      } else if (this.message < 100) {
-        this.messageRule = "message must be more than 100 cheracter.";
+      } else if (this.message.length < 20) {
+        this.messageRule = "message must be more than 20 cheracter.";
+        this.error++;
+      } else {
+        this.messageRule = "";
+        this.error = 0;
       }
     },
 
@@ -148,7 +186,7 @@ export default {
       this.checkEmail();
       this.checkPhone();
       this.checkMessage();
-      if (error == 0) {
+      if (this.error == 0) {
         var mailData = {
           name: this.name,
           email: this.email,
