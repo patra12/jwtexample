@@ -37,7 +37,7 @@
 
               <v-text-field v-model="pdf_name" label="PDF" required></v-text-field>
 
-              <v-btn @click="edit()" class="my-5 float-right" large color="primary">Edit</v-btn>
+              <v-btn @click="edit()" class="my-5 float-right" large color="primary">Save</v-btn>
             </v-form>
           </v-col>
         </v-row>
