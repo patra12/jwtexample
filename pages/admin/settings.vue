@@ -43,14 +43,27 @@
                 label="Copyrights"
                 required
               ></v-text-field>
-              <v-textarea
+              <!-- <v-textarea
                 type="text"
                 v-model="map_location"
                 :rules="copyrightsRules"
                 label="Map Location"
                 required
+              ></v-textarea> -->
+              <v-text-field
+                v-model="homepageTitle"
+                :rules="homepageTitleRules"
+                label="Homepage Title"
+                required
+              ></v-text-field>
+              <v-textarea
+                type="text"
+                v-model="homepageDescription"
+                :rules="homepageDescriptionRules"
+                label="Homepage Description"
+                required
               ></v-textarea>
-              <!-- <v-text-field
+              <v-text-field
                 v-model="dashboardTitle"
                 :rules="dashboardTitleRules"
                 label="Dashboard Title"
@@ -58,11 +71,11 @@
               ></v-text-field>
               <v-textarea
                 type="text"
-                v-model="dashboardContent"
+                v-model="dashboardDescription"
                 :rules="dashboardContentRules"
                 label="Dashboard Content"
                 required
-              ></v-textarea>-->
+              ></v-textarea>
               <p style="color:blue;">{{message}}</p>
 
               <v-btn class="my-5 float-right" @click="updateSettings()" large color="primary">Update</v-btn>
@@ -81,7 +94,7 @@ export default {
       valid: true,
       message: "",
       email: "",
-      emailRules: [v => !!v || "Title is email"],
+      emailRules: [v => !!v || "email is required"],
       phone: "",
       phoneRules: [v => !!v || "phone is required"],
       telephone: "",
@@ -96,7 +109,14 @@ export default {
       contact_addressRules: [v => !!v || "Title is required"],
       copyrights: "",
       copyrightsRules: [v => !!v || "Title is required"],
-      map_location: ""
+      homepageTitle:"",
+      homepageTitleRules:[v => !!v || "Homepage is required"],
+      homepageDescription:"",
+      homepageDescriptionRules:[v => !!v || "Homepage Description is required"],
+      dashboardTitle:"",
+      dashboardTitleRules:[v => !!v || "Dashboard title is required"],
+      dashboardDescription:"",
+      dashboardContentRules:[v => !!v || "Dashboard Description is required"],
     };
   },
   created() {
@@ -113,7 +133,11 @@ export default {
         this._data.contact_telephone = res.data[0].contact_telephone;
         this._data.contact_address = res.data[0].contact_address;
         this._data.copyrights = res.data[0].copyrights;
-        this._data.map_location = res.data[0].map_location;
+        // this._data.map_location = res.data[0].map_location;
+        this._data.homepageTitle = res.data[0].homepage_title;
+        this._data.homepageDescription =res.data[0].homepage_description;
+        this._data.dashboardTitle = res.data[0].dashboard_title;
+        this._data.dashboardDescription = res.data[0].dashboard_description;
       })
       .catch(error => {
         // handle error
@@ -132,11 +156,15 @@ export default {
           contact_telephone: this.contact_telephone,
           contact_address: this.contact_address,
           copyrights: this.copyrights,
-          map_location: this.map_location
+          // map_location: this.map_location,
+          homepage_title:this.homepageTitle,
+          homepage_description:this.homepageDescription,
+          dashboard_title:this.dashboardTitle,
+          dashboard_description:this.dashboardDescription
         }
       };
       this.$axios({
-        url: " /settingsPostData",
+        url: "/settingsPostData",
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
