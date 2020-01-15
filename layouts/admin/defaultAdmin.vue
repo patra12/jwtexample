@@ -52,17 +52,17 @@ export default {
         {
           icon: "mdi-apps",
           title: "Dashboard",
-          to: "/admin/dashboard"
+          to: "/nvadmin/dashboard"
         },
         {
           icon: "mdi-package-variant-closed",
           title: "Product",
-          to: "/admin/product/productlist"
+          to: "/nvadmin/product/productlist"
         },
         {
           icon: "mdi-wrench",
           title: "Settings",
-          to: "/admin/settings"
+          to: "/nvadmin/settings"
         }
       ],
       miniVariant: false,

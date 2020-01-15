@@ -31,8 +31,7 @@ var methods = {
             var dashboard_title = req.body.data.dashboard_title;
             var dashboard_description = req.body.data.dashboard_description;
 
-            var Update_query = "UPDATE settings SET email='" + email + "', phone='" + phone + "', telephone='" + telephone + "', contact_email='" + contact_email + "', contact_phone='" + contact_phone + "', contact_telephone='" + contact_telephone + "', contact_address='" + contact_address + "', copyrights='" + copyrights + "',homepage_title = '"+homepage_title+"',homepage_description='"+homepage_description+"',dashboard_title='"+dashboard_title+"',dashboard_description='"+dashboard_description+"'";
-            console.log(Update_query);
+            var Update_query = "UPDATE settings SET email='" + email + "', phone='" + phone + "', telephone='" + telephone + "', contact_email='" + contact_email + "', contact_phone='" + contact_phone + "', contact_telephone='" + contact_telephone + "', contact_address='" + contact_address + "', copyrights='" + copyrights + "',homepage_title = '" + homepage_title + "',homepage_description='" + homepage_description + "',dashboard_title='" + dashboard_title + "',dashboard_description='" + dashboard_description + "'";
             connection.query(Update_query, function (err, rows) {
                 connection.release();
                 if (!err) {
