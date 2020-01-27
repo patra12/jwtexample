@@ -4,7 +4,7 @@ const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
 
 const app = express()
-
+const signin = require("./controller/sigin");
 //configuring or setting body parser to get and read data coming from frontend
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -22,6 +22,10 @@ app.use(rout);
 app.get('/te', (req, res) => {
   res.send('hello from rout');
 });
+
+app.post('/signin', signin)
+// app.get('/welcome', welcome)
+// app.post('/refresh', refresh)
 
 //static url for images
 app.use('/product', express.static('uploads/product'));
