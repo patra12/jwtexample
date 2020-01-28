@@ -2,9 +2,13 @@ const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 const app = express()
-const signin = require("./controller/sigin");
+// const signin = require("./controller/sigin");
+// const welcome = require("./controller/welcome");
+// const refresh = require("./controller/refrash");
+const { signIn, welcome, refresh, logout } = require('./controller/handelar')
 //configuring or setting body parser to get and read data coming from frontend
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -23,9 +27,10 @@ app.get('/te', (req, res) => {
   res.send('hello from rout');
 });
 
-app.post('/signin', signin)
-// app.get('/welcome', welcome)
-// app.post('/refresh', refresh)
+app.post('/signin', signIn)
+app.get('/welcome', welcome)
+app.post('/refresh', refresh)
+app.get('/logout', logout)
 
 //static url for images
 app.use('/product', express.static('uploads/product'));
